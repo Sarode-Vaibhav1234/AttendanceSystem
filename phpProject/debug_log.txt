@@ -1,0 +1,1 @@
+{"subject_id":"12","start_time":"2025-04-10:11:15","altitude":"498.0","teacher_id":"","latitude":"16.8469625","end_time":"2025-04-10:11:15","title":"l","message":"lecture ","radius":"30","longitude":"74.6099689"}
