@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape>
+            <solid android:color="#FFFFFF"/> <!-- Color change when focused -->
+            <corners android:radius="22dp"/> <!-- Bigger curve when focused -->
+            <stroke android:width="2dp" android:color="#2A46E7"/> <!-- Highlight border -->
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#F5F5F5"/>
+            <corners android:radius="18dp"/>
+        </shape>
+    </item>
+</selector>

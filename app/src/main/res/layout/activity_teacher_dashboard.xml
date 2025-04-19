@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_12">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="24dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/img"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello, Teacher"
+                android:id="@+id/tvTeacherName"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Grid Layout -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:useDefaultMargins="true"
+            android:alignmentMode="alignMargins">
+
+            <!-- Take Attendance -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:id="@+id/takeAttendance"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Take Attendance"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Student Reports -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:id="@+id/studentReports"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student Reports"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Manage Timetable -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:id="@+id/manageTimetable"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manage Timetable"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Exam Management -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:id="@+id/examManagement"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exam Management"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Messages -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:id="@+id/messages"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Messages"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Leave Requests -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:id="@+id/leaveRequests"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leave Requests"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+        </GridLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:src="@drawable/img_11"/>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Subject Name -->
+    <EditText
+        android:id="@+id/etSubjectName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Subject Name"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Semester -->
+    <EditText
+        android:id="@+id/etSemester"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Semester (e.g. 1, 2, etc.)"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button to Submit -->
+    <Button
+        android:id="@+id/btnCreateSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Subject"
+        android:textSize="18sp"/>
+</LinearLayout>
