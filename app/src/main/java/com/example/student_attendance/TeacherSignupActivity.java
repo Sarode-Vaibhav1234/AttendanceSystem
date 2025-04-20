@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
@@ -19,18 +20,19 @@ import java.util.Map;
 public class TeacherSignupActivity extends AppCompatActivity {
 
     EditText etName, etEmail, etPassword;
-    Button btnSignup,toLogin;
+    TextView toLogin;
+    Button btnSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_signup);
 
-        etName = findViewById(R.id.etName);
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        btnSignup = findViewById(R.id.btnSignup);
-        toLogin = (Button) findViewById(R.id.btnTo);
+        etName = findViewById(R.id.username);
+        etEmail = findViewById(R.id.email);
+        etPassword = findViewById(R.id.password);
+        btnSignup = findViewById(R.id.signup_button);
+        toLogin = (TextView) findViewById(R.id.signUpTextView);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override

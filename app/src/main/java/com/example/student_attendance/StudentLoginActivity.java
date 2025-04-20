@@ -34,6 +34,7 @@ public class StudentLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_login);
+        ImageView imageView = findViewById(R.id.imageView);
 
         // Initializing the EditText fields and Buttons
         etRollNumber = findViewById(R.id.prnEditText);
@@ -57,6 +58,13 @@ public class StudentLoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter both fields", Toast.LENGTH_SHORT).show();
                 return;
             }
+            Drawable drawable = getDrawable(R.drawable.loginimg);
+            if (drawable instanceof AnimatedImageDrawable) {
+                ((AnimatedImageDrawable) drawable).start();
+            }
+            imageView.setImageDrawable(drawable);
+            imageView.setAdjustViewBounds(true);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
             String url = "http://192.168.35.247/phpProject/student_login.php";
 

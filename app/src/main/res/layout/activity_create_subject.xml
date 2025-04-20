@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:background="@drawable/img_12"
+    android:background="@drawable/grad_back"
     android:layout_height="match_parent">
 
     <!-- Subject Name -->
@@ -11,24 +11,44 @@
         android:id="@+id/etSubjectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Subject Name"
+        android:textSize="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#808080"
+        android:layout_weight="0"
+        android:padding="10dp"
+        android:background="@drawable/edittext_background2"
+        android:hint="  Subject Name"
         android:inputType="text"
-        android:layout_marginBottom="16dp"/>
+        android:drawableStart="@drawable/subject"
+        android:layout_marginTop="15dp"/>
 
     <!-- Semester -->
     <EditText
         android:id="@+id/etSemester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Semester (e.g. 1, 2, etc.)"
+        android:background="@drawable/edittext_background2"
+        android:textSize="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#808080"
+        android:layout_weight="0"
+        android:padding="10dp"
+        android:hint="  Semester (e.g. 1, 2, etc.)"
         android:inputType="number"
-        android:layout_marginBottom="16dp"/>
+        android:drawableStart="@drawable/semester"
+        android:layout_marginTop="18dp"
+        />
 
-    <!-- Button to Submit -->
     <Button
         android:id="@+id/btnCreateSubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Subject"
-        android:textSize="18sp"/>
+        android:padding="12dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#2A46E7"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
 </LinearLayout>
