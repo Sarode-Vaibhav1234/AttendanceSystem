@@ -36,7 +36,7 @@ public class TeacherSignupActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.password);
         ImageView imageView = findViewById(R.id.imageView);
         btnSignup = findViewById(R.id.signup_button);
-        toLogin = (TextView) findViewById(R.id.signUpTextView);
+        toLogin = findViewById(R.id.signUpTextView);
         Drawable drawable = getDrawable(R.drawable.signup);
         if (drawable instanceof AnimatedImageDrawable) {
             ((AnimatedImageDrawable) drawable).start();

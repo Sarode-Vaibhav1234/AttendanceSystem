@@ -40,7 +40,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.loginButton);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         signUpTextView = findViewById(R.id.signUpTxtView);
-        ImageView imageView = findViewById(R.id.imageView);
+        ImageView imageView = findViewById(R.id.imageview);
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
