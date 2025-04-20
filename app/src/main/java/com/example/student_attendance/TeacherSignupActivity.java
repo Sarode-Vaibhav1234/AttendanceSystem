@@ -1,10 +1,13 @@
 package com.example.student_attendance;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +34,16 @@ public class TeacherSignupActivity extends AppCompatActivity {
         etName = findViewById(R.id.username);
         etEmail = findViewById(R.id.email);
         etPassword = findViewById(R.id.password);
+        ImageView imageView = findViewById(R.id.imageView);
         btnSignup = findViewById(R.id.signup_button);
         toLogin = (TextView) findViewById(R.id.signUpTextView);
+        Drawable drawable = getDrawable(R.drawable.signup);
+        if (drawable instanceof AnimatedImageDrawable) {
+            ((AnimatedImageDrawable) drawable).start();
+        }
+        imageView.setImageDrawable(drawable);
+        imageView.setAdjustViewBounds(true);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +52,13 @@ public class TeacherSignupActivity extends AppCompatActivity {
                 String name = etName.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-
+                ImageView imageView = findViewById(R.id.imageView);
                 // Validate inputs
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(TeacherSignupActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
 
                 // Make the signup request
                 String url = "http://192.168.35.247/phpProject/teacher_signup.php"; // Replace with actual URL

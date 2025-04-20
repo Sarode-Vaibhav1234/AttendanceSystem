@@ -1,10 +1,13 @@
 package com.example.student_attendance;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +49,7 @@ public class StudentSignupActivity extends AppCompatActivity {
 
         // Initializing the EditText fields
         etName = findViewById(R.id.et_name);
+        ImageView imageView = findViewById(R.id.imageView);
         etRollNumber = findViewById(R.id.et_prn);
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.password);
@@ -61,6 +65,13 @@ public class StudentSignupActivity extends AppCompatActivity {
         executor = ContextCompat.getMainExecutor(this);
 
         findViewById(R.id.btn_signup).setOnClickListener(view -> checkBiometricSupportAndStart());
+        Drawable drawable = getDrawable(R.drawable.signup);
+        if (drawable instanceof AnimatedImageDrawable) {
+            ((AnimatedImageDrawable) drawable).start();
+        }
+        imageView.setImageDrawable(drawable);
+        imageView.setAdjustViewBounds(true);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         // Redirect to login screen when the "Already have an account? Login" text is clicked
         signUpTextView.setOnClickListener(v -> {

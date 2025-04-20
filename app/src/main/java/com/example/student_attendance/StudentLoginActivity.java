@@ -50,6 +50,13 @@ public class StudentLoginActivity extends AppCompatActivity {
                 startActivity(i1);
             }
         });
+        Drawable drawable = getDrawable(R.drawable.loginimg);
+        if (drawable instanceof AnimatedImageDrawable) {
+            ((AnimatedImageDrawable) drawable).start();
+        }
+        imageView.setImageDrawable(drawable);
+        imageView.setAdjustViewBounds(true);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         btnLogin.setOnClickListener(v -> {
             String roll = etRollNumber.getText().toString();
             String pass = etPassword.getText().toString();
@@ -58,13 +65,7 @@ public class StudentLoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please enter both fields", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Drawable drawable = getDrawable(R.drawable.loginimg);
-            if (drawable instanceof AnimatedImageDrawable) {
-                ((AnimatedImageDrawable) drawable).start();
-            }
-            imageView.setImageDrawable(drawable);
-            imageView.setAdjustViewBounds(true);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
 
             String url = "http://192.168.35.247/phpProject/student_login.php";
 

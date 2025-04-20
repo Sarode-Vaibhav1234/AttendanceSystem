@@ -2,10 +2,13 @@ package com.example.student_attendance;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +40,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.loginButton);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         signUpTextView = findViewById(R.id.signUpTxtView);
+        ImageView imageView = findViewById(R.id.imageView);
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +49,13 @@ public class TeacherLoginActivity extends AppCompatActivity {
                 startActivity(i1);
             }
         });
+        Drawable drawable = getDrawable(R.drawable.loginimg);
+        if (drawable instanceof AnimatedImageDrawable) {
+            ((AnimatedImageDrawable) drawable).start();
+        }
+        imageView.setImageDrawable(drawable);
+        imageView.setAdjustViewBounds(true);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
