@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/listViewAttendance"
+    <TextView
+        android:id="@+id/txtOverall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overall Attendance"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <ProgressBar
+        android:id="@+id/progressOverall"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="20dp"
+        android:progressDrawable="@android:drawable/progress_horizontal"
+        android:max="100"
+        android:progress="0"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAttendance"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

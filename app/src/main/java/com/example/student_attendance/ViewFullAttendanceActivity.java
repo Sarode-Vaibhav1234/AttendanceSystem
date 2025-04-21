@@ -1,23 +1,19 @@
 package com.example.student_attendance;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,61 +22,60 @@ import java.util.Map;
 
 public class ViewFullAttendanceActivity extends AppCompatActivity {
 
-    ListView listView;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> attendanceList = new ArrayList<>();
-    int studentId;
+    RecyclerView recyclerView;
+    ProgressBar progressOverall;
+    TextView txtOverall;
+    ArrayList<AttendanceModel> list = new ArrayList<>();
+    AttendanceAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_full_attendance);
 
-        listView = findViewById(R.id.listViewAttendance);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, attendanceList);
-        listView.setAdapter(adapter);
+        recyclerView = findViewById(R.id.recyclerViewAttendance);
+        progressOverall = findViewById(R.id.progressOverall);
+        txtOverall = findViewById(R.id.txtOverall);
 
-        SharedPreferences prefs = getSharedPreferences("student_session", MODE_PRIVATE);
-        studentId = prefs.getInt("student_id", -1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AttendanceAdapter(list);
+        recyclerView.setAdapter(adapter);
 
-        if (studentId == -1) {
-            Toast.makeText(this, "Invalid student session", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        fetchAttendance();
+        fetchAttendanceData();
     }
 
-    private void fetchAttendance() {
-        String url = "http://192.168.35.247/phpProject/get_attendance.php";
+    private void fetchAttendanceData() {
+        String url = "http://192.168.70.200/phpProject/get_attendance.php";
+
+        SharedPreferences prefs = getSharedPreferences("student_session", MODE_PRIVATE);
+        int studentId = prefs.getInt("student_id", -1);
 
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {
                 JSONObject json = new JSONObject(response);
                 if (json.getString("status").equals("success")) {
-                    JSONArray records = json.getJSONArray("records");
-
-                    attendanceList.clear();
-                    for (int i = 0; i < records.length(); i++) {
-                        JSONObject record = records.getJSONObject(i);
-                        String subject = record.getString("subject_name");
-                        String title = record.getString("title");
-                        String time = record.getString("timestamp");
-
-                        attendanceList.add(subject + "\n" + title + "\n" + time);
+                    list.clear();
+                    JSONArray attendance = json.getJSONArray("attendance");
+                    for (int i = 0; i < attendance.length(); i++) {
+                        JSONObject obj = attendance.getJSONObject(i);
+                        String subject = obj.getString("subject_name");
+                        int percent = obj.getInt("percentage");
+                        list.add(new AttendanceModel(subject, percent));
                     }
-
                     adapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(this, "No attendance records found", Toast.LENGTH_SHORT).show();
+
+                    int total = json.getInt("total");
+                    int present = json.getInt("present");
+                    int overall = total == 0 ? 0 : (present * 100) / total;
+
+                    progressOverall.setProgress(overall);
+                    txtOverall.setText("Overall Attendance: " + overall + "%");
                 }
-            } catch (JSONException e) {
+            } catch (Exception e) {
+                e.printStackTrace();
                 Toast.makeText(this, "Parsing error", Toast.LENGTH_SHORT).show();
             }
-        }, error -> {
-            Toast.makeText(this, "Network error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-        }) {
+        }, error -> Toast.makeText(this, "Fetch error", Toast.LENGTH_SHORT).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> map = new HashMap<>();

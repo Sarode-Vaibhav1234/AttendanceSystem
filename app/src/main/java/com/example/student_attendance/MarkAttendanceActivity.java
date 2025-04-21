@@ -3,9 +3,7 @@ package com.example.student_attendance;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +18,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -30,11 +27,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class MarkAttendanceActivity extends AppCompatActivity {
@@ -47,14 +41,13 @@ public class MarkAttendanceActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     int selectedAnnouncementId, studentId, selectedSubjectId;
 
-    private String date;
     FusedLocationProviderClient locationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark_attendance);
-        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
         spinnerAnnouncements = findViewById(R.id.spinnerAnnouncements);
         btnMarkAttendance = findViewById(R.id.btnMarkAttendance);
 
@@ -87,11 +80,11 @@ public class MarkAttendanceActivity extends AppCompatActivity {
 
         fetchAnnouncements();
 
-        btnMarkAttendance.setOnClickListener(v -> authenticateBiometric(this::checkLocationAndMark));
+        btnMarkAttendance.setOnClickListener(v -> authenticateBiometric(this::sendMarkRequest));
     }
 
     private void fetchAnnouncements() {
-        String url = "http://192.168.35.247/phpProject/get_announcements.php";
+        String url = "http://192.168.70.200/phpProject/get_announcements.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {
@@ -150,81 +143,47 @@ public class MarkAttendanceActivity extends AppCompatActivity {
         biometricPrompt.authenticate(promptInfo);
     }
 
-    private void checkLocationAndMark() {
-        // Location checking is disabled. Directly sending attendance request.
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-//            return;
-//        }
-//
-//        locationClient.getLastLocation().addOnSuccessListener(location -> {
-//            if (location != null) {
-//                double latitude = location.getLatitude();
-//                double longitude = location.getLongitude();
-//                double altitude = location.getAltitude();
-//
-//                // Expected values for location and altitude
-//                double expectedLat = 12.9716, expectedLng = 77.5946, expectedAlt = 920;
-//                double radius = 50.0;
-//
-//                float[] results = new float[1];
-//                Location.distanceBetween(latitude, longitude, expectedLat, expectedLng, results);
-//                boolean withinRange = results[0] <= radius && Math.abs(altitude - expectedAlt) < 10;
-//
-//                if (withinRange) {
-        sendMarkRequest();
-//                } else {
-//                    Toast.makeText(this, "Not within allowed location or altitude", Toast.LENGTH_SHORT).show();
-//                }
-//            } else {
-//                Toast.makeText(this, "Unable to fetch location", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-    }
-
     private void sendMarkRequest() {
-        String url = "http://192.168.35.247/phpProject/mark_attendance.php";
+        String url = "http://192.168.70.200/phpProject/mark_attendance.php";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                response -> {
-                    try {
-                        // Trim and validate response format
-                        String trimmedResponse = response.trim();
-                        if (trimmedResponse.startsWith("{")) {
-                            JSONObject jsonResponse = new JSONObject(trimmedResponse);
+        // Create a request to send student and announcement data to PHP server
+        StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
+            try {
+                // Parse the JSON response
+                JSONObject jsonResponse = new JSONObject(response);
 
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                Toast.makeText(MarkAttendanceActivity.this, "Attendance marked!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(MarkAttendanceActivity.this, "Failed to mark attendance.", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Log.e("MarkAttendance", "Invalid server response (not JSON):\n" + trimmedResponse);
-                            Toast.makeText(MarkAttendanceActivity.this, "Unexpected server response.", Toast.LENGTH_LONG).show();
-                        }
-                    } catch (JSONException e) {
-                        Log.e("MarkAttendance", "JSON parsing error: " + e.getMessage());
-                        e.printStackTrace();
-                        Toast.makeText(MarkAttendanceActivity.this, "Error parsing server response.", Toast.LENGTH_LONG).show();
-                    }
-                },
-                error -> {
-                    Log.e("MarkAttendance", "Volley error: " + error.toString());
-                    Toast.makeText(MarkAttendanceActivity.this, "Network error. Check your connection.", Toast.LENGTH_LONG).show();
+                String status = jsonResponse.getString("status");
+                String message = jsonResponse.getString("message");
+
+                // Display the status message
+                Toast.makeText(MarkAttendanceActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                // Optionally handle different statuses
+                if ("success".equals(status)) {
+                    // Do something upon success (e.g., finish activity or update UI)
+                } else {
+                    // Handle error scenarios
                 }
-        ) {
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(MarkAttendanceActivity.this, "Failed to parse server response", Toast.LENGTH_SHORT).show();
+            }
+        }, error -> {
+            // Handle Volley error (e.g., network issues)
+            Toast.makeText(MarkAttendanceActivity.this, "Failed: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+        }) {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> map = new HashMap<>();
-                map.put("student_id", String.valueOf(studentId)); // Convert to string when sending
-                map.put("announcement_id", String.valueOf(selectedAnnouncementId)); // Convert to string
-                return map;
+                // Send student_id and announcement_id to the server
+                Map<String, String> params = new HashMap<>();
+                params.put("student_id", String.valueOf(studentId));
+                params.put("announcement_id", String.valueOf(selectedAnnouncementId));
+                return params;
             }
         };
 
-        // Add the request to the RequestQueue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        // Add the request to the Volley queue
+        Volley.newRequestQueue(this).add(request);
     }
+
 }
