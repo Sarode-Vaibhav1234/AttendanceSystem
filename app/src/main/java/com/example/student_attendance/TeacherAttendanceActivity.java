@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class ViewAttendanceActivity extends AppCompatActivity {
 
     LinearLayout studentListLayout;
-    String url = "http://192.168.214.250/phpProject/get_students.php";
+    String url = "http://192.168.70.200/phpProject/get_students.php";
     SQLiteDatabase db;
 
     @Override
