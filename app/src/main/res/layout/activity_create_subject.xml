@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:background="@drawable/grad_back"
+    android:background="@drawable/background1"
+    android:gravity="center"
     android:layout_height="match_parent">
 
     <!-- Subject Name -->
@@ -16,7 +17,7 @@
         android:textColorHint="#808080"
         android:layout_weight="0"
         android:padding="10dp"
-        android:background="@drawable/edittext_background2"
+        android:background="@drawable/edittext_background"
         android:hint="  Subject Name"
         android:inputType="text"
         android:drawableStart="@drawable/subject"
@@ -27,7 +28,7 @@
         android:id="@+id/etSemester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background2"
+        android:background="@drawable/edittext_background"
         android:textSize="16dp"
         android:textColor="#000000"
         android:textColorHint="#808080"

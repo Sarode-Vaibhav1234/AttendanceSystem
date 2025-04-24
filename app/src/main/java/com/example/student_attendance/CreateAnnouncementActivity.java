@@ -17,15 +17,22 @@ import java.util.*;
 
 public class CreateAnnouncementActivity extends AppCompatActivity {
 
-    EditText etTitle, etMessage, etStartTime, etEndTime;
+    EditText etTitle, etMessage;
+    Spinner spinnerSubjects, spinnerStartTime, spinnerEndTime;
     Button btnCreateAnnouncement;
-    Spinner spinnerSubjects;
     TextView btnCreateSubject;
 
     ArrayList<String> subjectNames = new ArrayList<>();
     ArrayList<String> subjectIds = new ArrayList<>();
     ArrayAdapter<String> subjectAdapter;
     String selectedSubjectId = "";
+
+    String[] timeSlots = {
+            "08:00 AM", "09:00 AM", "10:15 AM", "11:15 AM",
+            "01:15 PM", "02:15 PM", "03:30 PM", "04:30 PM"
+    };
+
+    Map<String, String> startEndMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +52,22 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
         etTitle = findViewById(R.id.etTitle);
         etMessage = findViewById(R.id.etMessage);
-        etStartTime = findViewById(R.id.etStartTime);
-        etEndTime = findViewById(R.id.etEndTime);
+        spinnerStartTime = findViewById(R.id.spinnerStartTime);
+        spinnerEndTime = findViewById(R.id.spinnerEndTime);
         btnCreateAnnouncement = findViewById(R.id.btnCreateAnnouncement);
-        btnCreateSubject=findViewById(R.id.btnCreateSubject);
+        btnCreateSubject = findViewById(R.id.btnCreateSubject);
 
+        // Fill time slot map
+        startEndMap.put("08:00 AM", "09:00 AM");
+        startEndMap.put("09:00 AM", "10:00 AM");
+        startEndMap.put("10:15 AM", "11:15 AM");
+        startEndMap.put("11:15 AM", "12:15 PM");
+        startEndMap.put("01:15 PM", "02:15 PM");
+        startEndMap.put("02:15 PM", "03:15 PM");
+        startEndMap.put("03:30 PM", "04:30 PM");
+        startEndMap.put("04:30 PM", "05:30 PM");
+
+        // Spinner for subjects
         subjectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, subjectNames);
         subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSubjects.setAdapter(subjectAdapter);
@@ -64,12 +82,31 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        btnCreateSubject.setOnClickListener(new View.OnClickListener() {
+        // Spinner for start time
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, timeSlots);
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStartTime.setAdapter(timeAdapter);
+
+        spinnerStartTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent createSubjectIntent = new Intent(getApplicationContext(), CreateSubjectActivity.class);
-                startActivity(createSubjectIntent);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedStart = timeSlots[position];
+                String correspondingEnd = startEndMap.get(selectedStart);
+                int endIndex = Arrays.asList(timeSlots).indexOf(correspondingEnd);
+                if (endIndex != -1) {
+                    spinnerEndTime.setSelection(endIndex);
+                }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        spinnerEndTime.setAdapter(timeAdapter);
+
+        btnCreateSubject.setOnClickListener(v -> {
+            Intent createSubjectIntent = new Intent(getApplicationContext(), CreateSubjectActivity.class);
+            startActivity(createSubjectIntent);
         });
 
         fetchSubjects(teacherId);
@@ -77,11 +114,11 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
         btnCreateAnnouncement.setOnClickListener(v -> {
             String title = etTitle.getText().toString();
             String message = etMessage.getText().toString();
-            String startTime = etStartTime.getText().toString();
-            String endTime = etEndTime.getText().toString();
+            String startTime = spinnerStartTime.getSelectedItem().toString();
+            String endTime = spinnerEndTime.getSelectedItem().toString();
 
-            if (title.isEmpty() || message.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
-                Toast.makeText(this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
+            if (title.isEmpty() || message.isEmpty()) {
+                Toast.makeText(this, "Title and Message are required", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -90,7 +127,7 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
                 return;
             }
 
-            String url = "http://192.168.70.200/phpProject/create_announcement.php";
+            String url = "http://192.168.214.250/phpProject/create_announcement.php";
 
             StringRequest request = new StringRequest(Request.Method.POST, url,
                     response -> {
@@ -128,7 +165,7 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
     }
 
     private void fetchSubjects(String teacherId) {
-        String url = "http://192.168.70.200/phpProject/get_subjects_by_teacher.php";
+        String url = "http://192.168.214.250/phpProject/get_subjects_by_teacher.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {

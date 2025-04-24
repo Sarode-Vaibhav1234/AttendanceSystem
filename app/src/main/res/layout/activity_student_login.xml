@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/grad_backlogin"
+    android:background="@drawable/background1"
     android:padding="16dp">
 
     <!-- Image View -->

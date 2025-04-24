@@ -4,7 +4,7 @@
     android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f0f0f0"
+    android:background="@drawable/grad_backlogin"
     android:layout_marginBottom="8dp">
 
     <TextView

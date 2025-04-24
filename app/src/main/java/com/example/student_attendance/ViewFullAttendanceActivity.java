@@ -45,7 +45,7 @@ public class ViewFullAttendanceActivity extends AppCompatActivity {
     }
 
     private void fetchAttendanceData() {
-        String url = "http://192.168.70.200/phpProject/get_attendance.php";
+        String url = "http:/192.168.214.250/phpProject/get_attendance.php";
 
         SharedPreferences prefs = getSharedPreferences("student_session", MODE_PRIVATE);
         int studentId = prefs.getInt("student_id", -1);

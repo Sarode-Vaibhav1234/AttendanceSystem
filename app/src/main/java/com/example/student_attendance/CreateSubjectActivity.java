@@ -56,7 +56,7 @@ public class CreateSubjectActivity extends AppCompatActivity {
                     return;
                 }
 
-                String url = "http://192.168.70.200/phpProject/create_subject.php"; // Replace with actual URL
+                String url = "http://192.168.214.250/phpProject/create_subject.php"; // Replace with actual URL
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
