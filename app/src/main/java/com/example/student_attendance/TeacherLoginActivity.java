@@ -70,7 +70,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
                 }
 
                 // Make the login request
-                String url = "http://192.168.214.250/phpProject/teacher_login.php"; // Replace with actual URL
+                String url = "http://192.168.70.200/phpProject/teacher_login.php"; // Replace with actual URL
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {

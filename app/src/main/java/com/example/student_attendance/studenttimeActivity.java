@@ -74,7 +74,7 @@ public class studenttimeActivity extends AppCompatActivity {
             List<String> lectures = new ArrayList<>();
             try {
                 String day = params[0]; // e.g., "Monday"
-                URL url = new URL("http://1192.168.214.250/phpProject/get_lectures.php?day=" + URLEncoder.encode(day, "UTF-8"));
+                URL url = new URL("http://1192.168.70.200/phpProject/get_lectures.php?day=" + URLEncoder.encode(day, "UTF-8"));
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
 

@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation("com.github.mhiew:android-pdf-viewer:3.2.0-beta.3")
     implementation ("com.google.android.material:material:1.11.0")
+    implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -46,6 +47,7 @@ dependencies {
     implementation (libs.volley)
     implementation (libs.play.services.location)
 
+    implementation (libs.google.material.v1110) // or latest
 
     implementation (libs.biometric)
     implementation (libs.material.v140)

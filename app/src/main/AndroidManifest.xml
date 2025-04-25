@@ -6,10 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -23,13 +23,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".StudentAttendanceDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewFullAttendanceActivity"
             android:exported="false" />
         <activity
             android:name=".MarkAttendanceActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewAttendanceActivity"
+            android:name=".TeacherAttendanceActivity"
             android:exported="false" />
         <activity
             android:name=".StudentDashboardActivity"
@@ -56,8 +59,8 @@
             android:name=".TeacherSignupActivity"
             android:exported="false" />
         <activity android:name=".PdfViewerActivity" />
-        <activity android:name=".studenttimeActivity"/>
-        <activity android:name=".ExamSchedule"/>
+        <activity android:name=".studenttimeActivity" />
+        <activity android:name=".ExamSchedule" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -68,5 +71,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>
