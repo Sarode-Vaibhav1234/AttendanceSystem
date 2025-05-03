@@ -53,7 +53,7 @@ public class csvActivity extends AppCompatActivity {
             public void run() {
                 try {
                     // Construct the URL with subject_name parameter
-                    String urlString = "http://192.168.146.37/phpProject/generate_csv.php?subject_name=" +
+                    String urlString = "http://192.168.132.247/phpProject/generate_csv.php?subject_name=" +
                             URLEncoder.encode(subjectName, "UTF-8");
 
                     URL url = new URL(urlString);

@@ -3,6 +3,7 @@ package com.example.student_attendance;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
 
     TextView tvTeacherName;
     LinearLayout btnCreateAnnouncement, btnViewAttendance;
+    Button csv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         tvTeacherName = findViewById(R.id.tvTeacherName);
         btnCreateAnnouncement = findViewById(R.id.takeAttendance);
         btnViewAttendance = findViewById(R.id.studentReports);
+        csv=findViewById(R.id.csv);
 
         // Retrieve teacher's name from Intent
         Intent intent = getIntent();
@@ -43,6 +46,15 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent viewAttendanceIntent = new Intent(TeacherDashboardActivity.this, TeacherAttendanceActivity.class);
                 startActivity(viewAttendanceIntent);
+            }
+        });
+
+        csv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start Exam Schedule activity or show a Toast
+                Intent intent = new Intent(getApplicationContext(), csvActivity.class);
+                startActivity(intent);
             }
         });
     }

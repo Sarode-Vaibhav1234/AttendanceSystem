@@ -140,7 +140,7 @@ public class StudentSignupActivity extends AppCompatActivity {
     private void checkIfDeviceRegistered() {
         deviceID = android.os.Build.ID;
 
-        String url = "http://192.168.146.37/phpProject/check_registration.php";  // Check registration endpoint
+        String url = "http://192.168.132.247/phpProject/check_registration.php";  // Check registration endpoint
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
