@@ -127,7 +127,7 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
                 return;
             }
 
-            String url = "http://192.168.70.200/phpProject/create_announcement.php";
+            String url = "http://192.168.132.247/phpProject/create_announcement.php";
 
             StringRequest request = new StringRequest(Request.Method.POST, url,
                     response -> {
@@ -165,7 +165,7 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
     }
 
     private void fetchSubjects(String teacherId) {
-        String url = "http://192.168.70.200/phpProject/get_subjects_by_teacher.php";
+        String url = "http://192.168.132.247/phpProject/get_subjects_by_teacher.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {

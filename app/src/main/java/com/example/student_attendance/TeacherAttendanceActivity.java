@@ -85,7 +85,7 @@ public class TeacherAttendanceActivity extends AppCompatActivity {
     }
 
     private void fetchSubjects(String teacherId) {
-        String url = "http://192.168.70.200/phpProject/get_subjects_by_teacher.php";
+        String url = "http://192.168.132.247/phpProject/get_subjects_by_teacher.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -123,7 +123,7 @@ public class TeacherAttendanceActivity extends AppCompatActivity {
     }
 
     private void fetchStudentsForSubject(String subjectId) {
-        String url = "http://192.168.70.200/phpProject/fetch_students.php"; // Modify this if subject_id is needed
+        String url = "http://192.168.132.247/phpProject/fetch_students.php"; // Modify this if subject_id is needed
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {

@@ -84,7 +84,7 @@ public class MarkAttendanceActivity extends AppCompatActivity {
     }
 
     private void fetchAnnouncements() {
-        String url = "http://192.168.70.200/phpProject/get_announcements.php";
+        String url = "http://192.168.132.247/phpProject/get_announcements.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {
@@ -144,7 +144,7 @@ public class MarkAttendanceActivity extends AppCompatActivity {
     }
 
     private void sendMarkRequest() {
-        String url = "http://192.168.70.200/phpProject/mark_attendance.php";
+        String url = "http://192.168.132.247/phpProject/mark_attendance.php";
 
         // Create a request to send student and announcement data to PHP server
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {

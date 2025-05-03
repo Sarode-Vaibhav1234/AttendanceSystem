@@ -67,7 +67,7 @@ public class StudentLoginActivity extends AppCompatActivity {
             }
 
 
-            String url = "http://192.168.70.200/phpProject/student_login.php";
+            String url = "http://192.168.132.247/phpProject/student_login.php";
 
             StringRequest request = new StringRequest(Request.Method.POST, url,
                     response -> {

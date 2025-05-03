@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent =  new Intent(MainActivity.this, TeacherSignupActivity.class);
+                Intent intent =  new Intent(MainActivity.this, TeacherLoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent =  new Intent(MainActivity.this, StudentSignupActivity.class);
+                Intent intent =  new Intent(MainActivity.this, StudentLoginActivity.class);
                 startActivity(intent);
                 finish();
             }

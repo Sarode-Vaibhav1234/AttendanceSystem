@@ -37,7 +37,7 @@ public class StudentAttendanceDetailActivity extends AppCompatActivity {
     }
 
     private void fetchAttendanceDetails(String studentId, String subjectId) {
-        String url = "http://192.168.70.200/phpProject/get_attendance_by_subject.php?student_id=" + studentId + "&subject_id=" + subjectId;
+        String url = "http://192.168.132.247/phpProject/get_attendance_by_subject.php?student_id=" + studentId + "&subject_id=" + subjectId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
