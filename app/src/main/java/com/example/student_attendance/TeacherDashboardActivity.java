@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class TeacherDashboardActivity extends AppCompatActivity {
 
     TextView tvTeacherName;
-    LinearLayout btnCreateAnnouncement, btnViewAttendance;
+    LinearLayout btnCreateAnnouncement, btnViewAttendance, examManagement, timetable;
     Button csv;
 
     @Override
@@ -23,6 +23,8 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         btnCreateAnnouncement = findViewById(R.id.takeAttendance);
         btnViewAttendance = findViewById(R.id.studentReports);
         csv=findViewById(R.id.csv);
+        examManagement=findViewById(R.id.examManagement);
+        timetable=findViewById(R.id.manageTimetable);
 
         // Retrieve teacher's name from Intent
         Intent intent = getIntent();
@@ -54,6 +56,22 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start Exam Schedule activity or show a Toast
                 Intent intent = new Intent(getApplicationContext(), csvActivity.class);
+                startActivity(intent);
+            }
+        });
+        examManagement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start Exam Schedule activity or show a Toast
+                Intent intent=new Intent(getApplicationContext(), ExamSchedule.class);
+                startActivity(intent);
+            }
+        });
+        timetable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start Timetable activity or show a Toast
+                Intent intent = new Intent(getApplicationContext(), studenttimeActivity.class);
                 startActivity(intent);
             }
         });
