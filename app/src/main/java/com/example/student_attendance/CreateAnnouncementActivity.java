@@ -127,7 +127,7 @@ public class CreateAnnouncementActivity extends AppCompatActivity {
                 return;
             }
 
-            String url = "http://192.168.132.247/phpProject/create_announcement.php";
+            String url = "http://192.168.146.37/phpProject/create_announcement.php";
 
             StringRequest request = new StringRequest(Request.Method.POST, url,
                     response -> {

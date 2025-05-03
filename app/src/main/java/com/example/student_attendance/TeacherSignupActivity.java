@@ -61,7 +61,7 @@ public class TeacherSignupActivity extends AppCompatActivity {
 
 
                 // Make the signup request
-                String url = "http://192.168.132.247/phpProject/teacher_signup.php"; // Replace with actual URL
+                String url = "http://192.168.146.37/phpProject/teacher_signup.php"; // Replace with actual URL
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
