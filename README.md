@@ -4,25 +4,29 @@ By integrating fingerprint authentication and time-based attendance announcement
 The application also reduces the workload on faculty by automating report generation and CSV imports for all the subjects.
 Automate attendance marking using GPS which focuses on real-time, location restricted attendance marking.
 
-**Frontend Development **
+**Frontend Development**
+
 Designed using XML (layouts) and Java in Android Studio. 
 Simple, responsive UI tailored for two roles: Teacher and Student. 
  
-**Backend and Database **
+**Backend and Database**
+
 Implemented using PHP and MySQL. 
 APIs created for login, attendance marking, announcements, and data fetching. 
  
-**Biometric Integration ** 
-Integrated fingerprint authentication using biometric API for student verification before 
-marking attendance. 
+**Biometric Integration** 
+
+Integrated fingerprint authentication using biometric API for student verification before marking attendance. 
  
-**Timing Mechanism ** 
+**Timing Mechanism** 
+
 Teachers define active time ranges. 
 App checks current time against the defined range to enable/disable attendance option. 
  
-**CSV Import Logic**  
-Backend parses uploaded CSV and maps attendance records to respective students and 
-subjects. 
+**CSV Import Logic** 
+
+Backend parses uploaded CSV and maps attendance records to respective students and subjects. 
  
-**Testing Process **
+**Testing Process**
+
 Unit Testing on login, fingerprint, CSV import, and timing validation.
